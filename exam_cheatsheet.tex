@@ -1,0 +1,211 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Welcome to Overleaf --- just edit your LaTeX on the left,
+% and we'll compile it for you on the right. If you open the
+% 'Share' menu, you can invite other users to edit at the same
+% time. See www.overleaf.com/learn for more info. Enjoy!
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\documentclass{article}
+\usepackage{blindtext}
+\usepackage[a4paper, landscape, total={11.5in, 8in}]{geometry}
+\usepackage{amssymb} %maths
+\usepackage{amsmath} %maths
+\usepackage{amsfonts}
+\usepackage[utf8]{inputenc} %useful to type directly diacritic characters
+\usepackage{soul}
+\usepackage{bm}
+\usepackage{graphicx}
+\usepackage{xcolor}
+
+\def\x{\bm{x}}
+\def\y{\bm{y}}
+\def\a{\bm{a}}
+\def\c{\bm{c}}
+\def\d{\bm{d}}
+\def\A{\bm{A}}
+\def\B{\bm{B}}
+\def\b{\bm{b}}
+\def\y{\bm{y}}
+\def\Re{\mathbb{R}}
+\def\Z{\mathbb{Z}}
+
+\begin{document}
+\noindent
+\textbf{Vectors}: Remember determinant of $3\times3$ matrix has $-$ for second term.
+\textbf{Linear independence}: the unique solution to the system of equations $\sum_{i=1}^{K}\alpha_{i}\textbf{x}^{i}=\textbf{0}$ is $\alpha_i=0$.
+\textbf{Inverse Matrix}: A $2 \times 2$ matrix has inverse: $A^{-1}=\frac{1}{ad-bc}=$ $\begin{bmatrix}d & -b \\ -c & a \end{bmatrix}$, From $\A = \bm{I}\A \to \bm{I} = \A \A^{-1}$.
+\textbf{Taylor's approximation}: Second term is $\frac{1}{2}(\textbf{x}-\textbf{x}^{0})^{\top} \nabla^{2}f(\textbf{x}^{0})(\textbf{x}-\textbf{x}^{0})$.
+\textbf{Closed Set}: it's limit point belongs to $\textit{X}$.
+\textbf{Bounded Set}: There exists $\textit{M}$ s.t. $||\x||\le \textit{M}$.
+A \textbf{Compact Set} is both closed and bounded.
+\textbf{Convexity: first Order Condition} $f(\textbf{y}) \ge f(\textbf{x}) + \nabla f(\textbf{x})^{\top}(\textbf{y}-\textbf{x}))$.
+\textbf{Convexity: Second Order Condition} Hession $\nabla^{2}f(\textbf{x})$is psd..
+\textbf{Nonnegative weighted sum}, \textbf{Maximum} of convex functions also convex. Composition of convex functions $f$ and $g_i$ $h(\textbf{x})=f(g_i(\textbf{x}))$ is convex if \textbf{either} $f$ is nondecreasing or if each $g_{i}$ is linear.
+\textbf{Intersection}, \textbf{Sum} and \textbf{Product} of two convex sets are convex. Note \textbf{Union} of two convex sets is not convex in general.
+The epigraph epi$\textit{f}=\{(y,\textbf{x}): y\ge f(\textbf{x})\}$, $\alpha$-level set $\textit{X}_{\alpha}=\{\textbf{x}:f(\textbf{x})\le \alpha\}$ are convex.
+\textbf{Convex Optimization} write equality constraint in $\le$ form and check its convexity.
+$\ell_1$-norm = $\|\x - \y\|_1 = {\sum_{i=1}^n |x_i-y_i|}$.
+$\ell_\infty$-norm = $\|\x - \y\|_\infty = \max_{1\le i\le n} |x_i-y_i|$.
+\textbf{Weierstrass's Theorem} If $f$ is a continuous function and $X$ is a nonempty, compact set, then ($P$) has an optimal solution. Sufficient but not necessary condition.
+If ($P$) is a convex program, i.e. $f$ is a convex function and $X$ is a convex set, then any local optimal solution is global.
+\textbf{Improving search} is an algorithm based on moving from one solution to a better solution.
+\textbf{Be careful about the statement of the question whether optimal solution refers to maximum or minimum}. Minimization problem over a compact set may have optimal solution in interior of $X$ but has local max on the boundary.
+\textbf{Relaxation} Problem ($Q$) is a relaxation of ($P$) if: 1. $X \in Y$; 2. $f(x) \ge g(x)$.
+\textbf{Lagrangian Relaxation} $\mathcal{L}(\bm{\lambda},\bm{\mu}) = \min(f(x) + \sum_{i\in I}\lambda_i(g_i(x)-b_i)+\sum_{j\in J}\mu_i(h_j(x)-d_i))$.
+\textbf{First order optimalityy condition}: $\nabla f(x^{*})\Delta x \ge 0 \to \nabla f(x^{*})=0$ due to $\Delta x$ can be either positive or negative.
+\textbf{Second order optimality condition}: $\Delta x^{\top} \nabla f(x^{*})\Delta x \ge 0 \to \nabla^2 f(x^{*})$ is psd.
+If $\nabla f(x^{*})\Delta x \ge 0$ and $\nabla^2 f(x^{*})$ is \textbf{positive definite}, then $x^{*}$ is local min.
+\textbf{Gradient Descent}: The gradient is $\nabla f(x^{k})$ and gradient direction $d^{k}=-\nabla f(x^{k})$. Choose $\alpha$ that minimize $f(x^{k}+\alpha d^{k})$. Update $x^{k+1} \leftarrow x^{k} - \alpha \nabla f(x^{{k}})$. Behavior of gradient descent can be "zig-zags" because $k$ and $k+1$ gradient descent directions can be perpendicular.
+\textbf{Newton Methods}: $x^{k+1}=x^{k}-(\nabla^2f(x^k))^{-1}\nabla f(x^k)$. $d^{k}=-(\nabla^2f(x^k))^{-1}\nabla f(x^{k})$, and step size $\alpha=1$. Newton's method is not guaranteed to converge. If the Hessian is singular, at some iteration we cannot proceed.
+\textbf{Golden Section Search},\textbf{Quadratic Fit}, \textbf{Nelder-Mead method} are not derivative based. N-M method only depends on function value.
+In \textbf{Transportation problem}, objective function is $\min \sum c_{ij}x_{ij}$, the constraints are $\sum x_{ij} \ge d_{j}$ and $\sum x_{ij} \le s_i$.
+In \textbf{Max Flow problem}, the objective function is to max the supply $\max b_s$ and the constraints are 1. flow conservation$\sum_{k \in O(i)} x_{ik} - \sum_{j \in I(i)} x_{ji}=b_i$; 2. total supply = total demand $b_t = -b_s$ and 3. Arc capacity $0 \le x_{ij} \le u_{ij}$. 
+In \textbf{Min Cut problem}, the capacity of a cut is the total capacity of arcs that cross from $S$ to its complement nodes $C$.
+In \textbf{Shortest Path problem}, $d_j \le \min (d_i + c_{ij})$ , for all incoming node i.
+\textbf{Here-and-Now} made before knowing uncertain parameters.
+\textbf{Wait-and-See} made after knowing uncertain parameters. \\
+\textbf{Two-stage stochastic inventory control} production quantity $x$ is here-and-now variable. sell quantity and discount quantity $y_i,z_i$ are wait-and-see variables
+\begin{align}
+    \min \quad cx + \textit{E}_{d}(Q(x,d)), & \quad Q(x,d) \quad \min -ry - sz \\
+    \text{s.t.} \quad 0 \le x \le \bar{x} & \quad \text{s.t.} y \le d \\
+    & \quad y + z \le x, x, z \ge 0
+\end{align}
+Solution depends on $\frac{r-c}{r-s}$.\\
+\textbf{Piecewise linear function}: $|x|=\max\{x,-x\}$, is convex piecewise linear function.
+\textbf{Ray, Lines}: Ray definition $\{\x|\x=\bm{\alpha + \theta \bm{d}, \forall \theta \ge 0}\}$. Line definition: $\{\x|\x = \alpha + \theta \d, \forall \theta \in \Re \}$.
+\textbf{Hyperplane} a plane in $\Re$ is defined as $\sum_{i=1}\A x_{i}=c$.
+\textbf{Half space} a linear equity $\bm{a}^{\top}\x=\bm{c}$ can be expressed as two halfspaces: $H_1={\x:\bm{a}^{\top}\x \le \bm{c}} \cap H_2={\x:\bm{a}^{\top}\x \ge \bm{c}}$.
+\textbf{Polyhedron} the intersection of a finite number of halfspaces $\textit{P}=\{\x: \A^{\top}\x\ \le \b \}$.
+\textbf{Extreme Point} $\x$ is a extrem point if and only if it cannot be a convex combination of two different points in $P$.
+\textbf{Convex hull}: $conv\{a_1,...a_n\}=\{x|x=\lambda_1 a_1 + \lambda_2 a_2 +...+ \lambda_n a_{n}, \sum_{i} \lambda_{i}=1\}$. A nonempty and bounded polyhedron is the convex hull of it's extreme points. Also called \textbf{polytope}.
+\textbf{Unbounded polyhedron, recession directions}: iff there are directions to move t o infinity.  These directions are called \textbf{recession directions}.
+A ray $d$ is a \textbf{Conic combination} of two rays $e_1, e_2$ if d is a nonnegative weighted sum of $e_1, e_2$. A Conic hull or \textbf{cone} is $conic\{r_1,...r_n\}=\{x|x=\lambda_1 r_1 + \lambda_2 r_2 +...+ \lambda_n r_{n}, \lambda_i \ge 0 \}$.
+\begin{enumerate}
+\item if a polyhedron is bounded, there's no extrem ray.
+\item if a polyhedron is bounded, there must be an extreme point.\
+\item if a polyhedron is unbounded and doesn't contain a line, it must have an extreme ray.
+\item if a polyhedron is unbounded, it may not have an extreme point. e.g. $0 \le x \le 1$.    
+\end{enumerate}
+\textbf{Weyl-Caratheodory Theorem} Any nonempty polyhedron $P$ with at least one extreme points can be formed by its extreme point and its extreme rays.
+An extreme point is the unique solution of $n$ \textbf{l.i. active constraints}.
+\begin{enumerate}
+    \item Active constraints: linear equality constraints.
+    \item Basic solution: unique solution of n linearly independent active constraints.
+    \item Basic feasible solution: basic solution that's feasible = extreme points.
+\end{enumerate}
+$n$ active constraints can be written as $\begin{bmatrix} B & N \\ 0 & I \end{bmatrix}$ $\begin{bmatrix} x_B \\ x_N \end{bmatrix}$ = $\begin{bmatrix} b \\ 0 \end{bmatrix} $, $x_B=B^{-1}\b, x_N=0$.
+A polyhedron $P$ has an extreme point iff it doesn't contain a line. \textbf{A feasible standard form LP always has a BFS}. 
+An optimal solution in LP is a BFS but not all BFS are optimal.
+\textbf{From practice exam} A nonempty polyhedron in standard form must have an extreme point.
+Two \textbf{Adjacent BFS} share the same $n-1$ l.i.active constraints.
+\textbf{Simplex method}
+\begin{align*}
+    d_N = \begin{bmatrix}
+        0 \\...\\1...0
+    \end{bmatrix} = e_j,
+    d_B = -B^{-1}A_j,
+    \bar{c}_j = c_j - c_B^{\top}B^{-1}A_j
+\end{align*}
+\begin{figure}[!ht]
+    \centering
+    \includegraphics[scale=0.4]{simplex.png}
+\end{figure}
+A BFS is nondegenerate in standard form LP if all basic variables are positive. If there's some basic variable is 0, then the BFS is degenerated. Simplex method can get stucked.\\
+\textbf{Degeneracy}: a BFS is nondegenerate in standard form	LP if all basic	variables are positive.
+\textbf{Bland's rule}: Choose the entering nonbasic variable $x_j$ s.t. $j$ is the smallest index with $\bar{c_j}\le 0$. Choose exiting basic variable $x_i$ s.t. $i$ is the smallest index that achieves the min ratio in the test. Bland's rule guarantees termination.
+\textbf{Phase-I}
+\begin{align*}
+    (P1) \quad z_{p1} = \min \sum_{i=1} y_{i} \\
+    \quad \text{s.t.} \quad Ax + y = b \\
+    \quad \quad x, y \ge 0
+\end{align*}
+\begin{enumerate}
+    \item if $z_{p1} \ge 0$, the original LP is infeasible.
+    \item if $z_{p1}=0$, a feasible solution to the original LP is found, from which we can obtain a BFS for the original LP.
+\end{enumerate}
+\textbf{Weak Duality} If $\x$ is any feasible solution to the primal \textit{LP} and $\y$ is any feasible solution to the dual \textit{LP}, then $\c^\top \x \ge \b^\top \y$.
+\textbf{Strong Duality} If a primal \textit{LP} has finite optimal solution $\x^*$, and it's dual \textit{LP} must also have a finite optimal solution $\y^*$, and the respective optimal objective values are equal, $\c^\top \x^* = \b^\top \y^*$.
+\textbf{Table of possible and impossible}
+\begin{table}[]
+    \centering
+    \begin{tabular}{|c|c|c|c|}
+    \hline
+    & Finite optimal & Unbounded optimal & Infeasible \\
+    \hline
+    Finite optimal & possible & impossible & impossible \\
+    \hline
+    Unbounded optimal & impossible & impossible & \textcolor{red}{possible(must)} \\
+    \hline
+    Infeasible      & impossible & \textcolor{red}{possible} & \textcolor{red}{possible}\\
+    \hline
+    \end{tabular}
+\end{table}
+\textbf{Relaxation}: lower objective function \textbf{on feasible points} and find a feasible region larger than the feasible region of the original problem.\\
+\textbf{Lagarangia Relaxation}: For a minimization problem
+\begin{enumerate}
+    \item If primal constraint is an equality, then the dual variable is free
+    \item If primal constraint has $\ge$, then the dual variable is $\ge 0$
+    \item If primal constraint has $\le$, then the dual variable is $\le 0$
+    \item If primal variable is free, then the dual constraint has $=$
+    \item If primal variable $\ge 0$, then the dual constraint has $\le$
+    \item If primal variable $\le 0$, then the dual constraint has $\ge$
+\end{enumerate}
+\textbf{Complementary Slackness} $\x$ and $\y$ are optimal solutions for the primal and dual \textit{LP} iff. they satisify following conditions:
+\begin{enumerate}
+    \item Primal complementary slackness: $y_i(\a_{i}^{\top}\x-b_i)=0$ for all $i$. That is either the $i$-th primal constraint is \textbf{active} or dual variable $y_i=0$.
+    \item Dual complementary slackness: $x_j(\c_j-\y^\top \A_j)=0$ for all $j$. That is either the $j$-th dual constraint is \textbf{active} or primal variables $x_j=0$.
+\end{enumerate}
+\textbf{General rules to form LP Dual}\
+\begin{enumerate}
+    \item Step 1 Relaxing the objective: Since $y_i(b_i-\a_i^\top \x ) \le 0$: if $\a_i^\top \x \ge b_i$, then $y_i \ge 0$;if $\a_i^\top \x \le b_i$, then $y_i \le 0$;if $\a_i^\top \x = b_i$, then $y_i$ is free;
+    \item Step 2 Solving lagrangian relaxation: Since $(c_j-y^\top \A)x_i \ge 0$:
+\end{enumerate}
+\textbf{Robust Constraint}
+\textbf{Column Generation} Property 1: The BFS of Restricted Master Problem is BFS of Master Problem by setting all other variables to 0. So as Basis matrix and basic variables.
+\textbf{Solving Pricing problem} $w=min_{j=1,...,N}\{c_j-c_B^T B^{-1}A_j\}$. For cutting stock problem, $c_j=1$. Treat $A_j$ as a variable and solve the maximization problem.
+\textbf{Knapsack Problem} $\sum_{i=1}^m w_ia_i \le W, a_i \ge 0$.
+\textbf{Primal-Dual Relationship of Column Generation and Constraint Generation}
+\textbf{Separation Problem} In Restricted Dual Master Problem $\hat{Z} = \min_{j=1,...,N}{c_j-(y^*)^\top A_j}$ (constraint violation) $\to$ Let $A_j$ be the constraint achieving the minimum. If $\hat{Z} \le 0$, then add $A_j$ to $I$. Primal Pricing Problem = Dual Separation Problem.
+\textbf{Coordination and Distributed Problem}
+\begin{align*}
+    (LP) \quad \min \quad &\bm{c}^\top \bm{x} \quad \leftarrow \text{Complicating constraint} \\
+    \text{s.t.} \quad & \bm{D}\bm{x}=\bm{b_0} \quad \leftarrow \text{Easy constraint}\\
+    & \bm{F} \bm{x} = \bm{b} \\
+    & \bm{x} \ge 0
+\end{align*}
+\textbf{Dantzig-Wolfe Decomposition} Rewrite above
+\begin{align*}
+    \min \quad & \bm{c}^\top \bm{x} \\
+    \text{s.t.} \quad & \bm{D}\bm{x}=\bm{b} \\
+    & \bm{x} \in P
+\end{align*}
+Where $P={\bm{F}\bm{x}=b, x \ge 0}$ and assume it's a bounded polyhedron. Use extreme points to represent $P$ and rewrite the problem as
+\begin{align*}
+    \min_{\lambda_1,...,\lambda_N} &\quad \sum_{i=1}^N \lambda_i(\bm{c}^\top \bm{x_i}) \\
+    \text{s.t.} &\sum_{i=1}^N \lambda_i (\bm{D}x_i)=\bm{b_0} \\
+    & \sum_{i=1}^N \lambda_i = 1 \\
+    & \lambda_i \ge 0, \forall i=1,...,N
+\end{align*}
+Apply Column Generation to solve (MP) to get optimal solution $\hat{\lambda}$ and dual optimal solution $(\hat{y},\hat{r})$. $\hat{Z}=\min_{i=1,...,N}\{\bm{c}^\top x_i-\hat{\bm{y}}^\top (\bm{D}x_i)-\hat{r}\}$.
+\textbf{Least Squares Optimality Condition} $\min_{x}(Ax-b)^\top(Ax-b)=x^\top A^\top Ax - 2(A^\top b)^\top x + b^\top b$. Optimality condition: $\nabla(Ax-b)^\top(Ax-b)=0 \to A^\top Ax=A^\top b$(Normal Equation) $\to \bm{x}=(A^\top A)^{-1}A^\top b$.
+\textbf{Moore-Penrose Pseudoinverse}: For a matrix $A\in R^{m\times n}$ with $m \ge n$ and full rank, the Moore-Penrose pseudoinverse of A is defined as: $A^{+}=(A^\top A)^{-1}A^\top$. If $A$ is an invertible square matrix, then $A^{+}=A^{-1}$.
+\textbf{SVD}: Let $A$ be an $m$-by-$n$ matrix with $m\ge n$. Then we can write $A$ as $A=U\Sigma V^\top=\sum_{i=1}^{n}\sigma_i u_i v_i^\top$, where $U$ is an $m$-by-$n$ matrix satisfying $U^\top U=I$, $V$ is an $n$-by-$n$ matrix satisfying $V^\top V=I$, and $\Sigma=diag(\sigma_1,...,\sigma_n)$ with $\sigma_1 \ge \sigma_2 \ge ...\ge \sigma_n \ge 0$. Columns $u_i$ of $U$ are called left singular vectors of $A$, Columns $v_i$ of $V$ are called right singular vectors of $A$ and $\sigma_1,...,\sigma_n$ are called singular values of $A$.
+\textbf{Relation to Eigendecomposition}: if $A$ is a symmetric matrix with eigenvalues $\lambda_1,...,\lambda_n$ and orthonormal eigenvectors $u_1,...,u_n$, e.g. $A=U\Lambda U^\top$, where $U=\left [u_1,...,u_n\right]$, then $\sigma_i=|\lambda_i|$ and $v_i=sign(\lambda_i)u_i$. Eigenvalues of $A^\top A$ are $\sigma_1^2,...,\sigma_n^2$, eigenvectors are $v_1,...,v_n$, then $A^\top A=V\Sigma U^\top U\Sigma V^\top=V \Sigma^{2} V^\top$.
+\textbf{Low Rank Approximation by SVD Theorem}: the rank $r$ matrix closest to $A$ in $l_2$ norma is $\hat{A}=U\Sigma_r V^\top$, where $\Sigma_r=diag(\sigma_1,...,\sigma_r,0,...,0)$ and $||\hat{A}-A||_2=\sigma_{r+1}$. 
+\textbf{Convex Cone}: A set $K$ is a convex cone if $K$ is convex and $\alpha x \in K$, $\forall \alpha \ge 0, x \in K$. $a \succcurlyeq_K b$ means $a-b \in K$ and $K$ is a convex cone. 
+\textbf{Second Order Cone} $L^m={(x_1,x2,...,x_m):\sqrt{x_1^2+x_2^2+...+x_{m-1}^2 \le x_m}}$.
+\textbf{SOC Constraint} $Ax \succcurlyeq_{L^{m}} b, A \in R^{m\times n}, x\in R^{n}, b \in R^{m}$.
+\textbf{Positive Semi-definite}: $A$ is a symmetric matrix. If the eigenvalues of $A$ are nonnegative, or $x^\top A x \ge 0$ for all $x \in R^{n}$, or A can be factored as $A = D^\top D$ for some matrix $D$.
+\textbf{PSD Constraint} set of all positive semidefinite matrices in $R^{n\times n}$ is $S_+^n$, is a convex cone.
+\textbf{NP-complete}: Within the set of problems in $NP$ there's a set of problems such that every problem in $NP$ can be easily converted to those problem are called $NP-complete$.
+\textbf{Problem not in NP} Problems cannot be verified in polynomial time.
+\textbf{NP-hard}: If an algorithm for it can be converted to the one solving $NP$ problem. $NP-hard$ may not be in NP. All NP-complete are NP-hard but not vice versa. \textit{Most discrete optimization problems are NP-hard}.
+\textbf{Set packing} is a maximization problem.
+\textbf{Set covering} is a minization problem.
+\textbf{Set partitioning} could be max or min problem.
+\textbf{Min Cost Network Flow}: If the supply data $b_i$ and the capacities $u_{ij}$ are integers, then every extreme point (or basic feasible solution) will have integer entries.
+\textbf{Subtour Elimination}: $x_ij + x_ji \le 1$.
+\textbf{LP Relaxation Properties}: 1. If LP relaxation is unbounded then the IP can be either infeasible or unbounded. 2. If the LP relaxation has an optimal solution, then the IP could be infeasible or have an optimal solution. 3. If an optimal solution to the LP relaxation is integral then it is an optimal solution to the IP.
+\textbf{Distrance from a point to a hyperplane}: $d(a^\top x -b, p)=\frac{|a^\top p -b|}{||a||_2}$
+\end{document}
